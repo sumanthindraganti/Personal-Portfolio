@@ -404,39 +404,38 @@
             display: none;
         }
        @media only screen and (max-width: 900px){
-            .header-content {
-        flex-direction: column;
+          .header-content {
+        flex-direction: column-reverse; /* Image first, then text */
         align-items: center;
         text-align: center;
         padding-top: 20px;
+        gap: 20px; /* Adds space between image and text */
     }
-            .text-content {
-        padding-right: 0;
+
+    .profile-img {
+        display: flex;
+        justify-content: center;
+        width: 100%;
         margin-top: 20px;
-        z-index: 3;
-        background: rgba(0,0,0,0.7);
-        padding: 20px;
-        border-radius: 15px;
-        width: 90%;
     }
-             .profile-img {
-        margin-top: 20px;
-        text-align: center;
-    }
-    
+
     .profile-img img {
-        width: 250px;
-        max-width: 80%;
-        height: auto;
+        width: 250px; /* Fixed size for mobile */
+        height: auto; /* Maintain aspect ratio */
+        max-width: 80%; /* Prevents overflow */
+        border-radius: 15px;
     }
-    
-    .header-text {
-        margin-top: 10%;
-        font-size: 16px;
+
+    .text-content {
+        width: 100%;
+        padding: 15px;
+        background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+        border-radius: 10px;
+        margin-top: 0; /* Remove extra margin */
     }
-    
+
     .header-text h1 {
-        font-size: 32px;
+        font-size: 32px; /* Adjusted for mobile */
     }
             nav .fa-solid{
                 display: block;
@@ -495,17 +494,14 @@
             }
         }
         @media only screen and (max-width: 600px) {
-          .profile-img img {
-        width: 200px;
+         .profile-img img {
+        width: 200px; /* Slightly smaller for very small screens */
     }
-    
+
     .header-text h1 {
         font-size: 28px;
     }
-    
-    .header-text {
-        margin-top: 15%;
-    }
+        }
         }
     </style>
 </head>
