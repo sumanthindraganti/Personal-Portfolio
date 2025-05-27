@@ -254,8 +254,12 @@
             font-size: 14px;
             transition: height 0.5s;
         }
+        .layer p{
+            font-size: 15px;
+        }
         .layer h3{
-            font-weight: 500;
+            font-weight: 3000;
+            
             margin-bottom: 20px;
         }
         .layer a{
@@ -353,53 +357,147 @@
         .copyright i{
             color:#ff004f;
         }
-        /* ---------------------Skills Section------------------- */
-        .skills-container {
-            display: flex;
-            justify-content: space-between; 
-            flex-wrap: wrap;
-            gap: 20px;
-            max-width: 1200px;
-            margin: auto; 
-            padding: 30px 20px;
-        }
-        .skills-section {
-            width: 30%; 
-            min-width: 280px; 
-        }
-        .skills-section .sub-title {
-            font-size: 26px;
-            text-align: center;
-            margin-bottom: 12px;
-        }
-        .skill {
-            margin-bottom: 15px;
-        }
-        .skill-name {
-            margin-bottom: 5px;
-            font-size: 16px;
-        }
-        .skill-bar {
-            width: 100%;
-            background: #ddd;
-            height: 15px;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-        }
-        .skill-fill {
-            height: 100%;
-            font-size: 12px;
-            text-align: right;
-            padding-right: 5px;
-            color: white;
-            font-weight: bold;
-            transition: width 2s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-        }
-        /* ---------------------css for small screens--------------- */
+        
+/* ---------------------Skills Section------------------- */
+.skills-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.skills-section {
+    flex: 1;
+    min-width: 280px;
+    background: #1a1a1a;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(255, 0, 79, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skills-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 0, 79, 0.2);
+}
+
+.skills-section .sub-title {
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff004f;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.skills-section .sub-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #ff004f, #ff5733);
+    border-radius: 3px;
+}
+
+.skill {
+    margin-bottom: 20px;
+}
+
+.skill-name {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: #ddd;
+}
+
+.skill-name span {
+    font-weight: bold;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.skill-bar {
+    width: 100%;
+    height: 12px;
+    background: #333;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.skill-fill {
+    height: 100%;
+    border-radius: 6px;
+    position: relative;
+    transition: width 1.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    font-size: 11px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.skill-fill::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+                rgba(255,255,255,0.15) 0%, 
+                rgba(255,255,255,0.3) 50%, 
+                rgba(255,255,255,0.15) 100%);
+    border-radius: 6px;
+    animation: shine 2.5s infinite;
+}
+
+.skill-fill::after {
+    content: attr(data-percent);
+    position: absolute;
+    right: 10px;
+    font-size: 11px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) skew(-20deg); }
+    100% { transform: translateX(100%) skew(-20deg); }
+}
+
+/* Glow effect on hover */
+.skill:hover .skill-fill {
+    filter: brightness(1.1);
+    box-shadow: 0 0 8px rgba(255,255,255,0.3);
+}
+
+/* Responsive adjustments */
+@media only screen and (max-width: 900px) {
+    .skills-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .skills-section {
+        width: 90%;
+    }
+}        /* ---------------------css for small screens--------------- */
         nav .fa-solid{
             display: none;
         }
@@ -502,7 +600,7 @@
         font-size: 28px;
     }
         }
-        }
+        
     </style>
 </head>
 <body>
@@ -600,43 +698,43 @@
         <div class="skill">
             <p class="skill-name">HTML/CSS</p>
             <div class="skill-bar">
-                <div class="skill-fill" style="width: 90%; background:  #ff5733;">90%</div>
+                <div class="skill-fill" style="width: 90%; background:  #ff5733;" data-percent="90%"></div>
             </div>
         </div>
         <div class="skill">
             <p class="skill-name">JavaScript</p>
             <div class="skill-bar">
-                <div class="skill-fill" style="width: 80%; background: #3498db;">80%</div>
+                <div class="skill-fill" style="width: 90%; background: #3498db;" data-percent="80%"></div>
             </div>
         </div>
         <div class="skill">
             <p class="skill-name">Java</p>
             <div class="skill-bar">
-                <div class="skill-fill" style="width: 85%; background:#f1c40f;">85%</div>
+                <div class="skill-fill" style="width: 90%; background:#f1c40f;"data-percent="85%"></div>
             </div>
         </div>
         <div class="skill">
             <p class="skill-name">C programming</p>
             <div class="skill-bar">
-                <div class="skill-fill" style="width: 75%; background: #e67e22;;">75%</div>
+                <div class="skill-fill" style="width: 90%; background: #e67e22;" data-percent="75%"></div>
             </div>
         </div>
         <div class="skill">
             <p class="skill-name">C++</p>
             <div class="skill-bar">
-                <div class="skill-fill" style="width: 80%; background: #9b59b6">80%</div>
+                <div class="skill-fill" style="width: 90%; background: #9b59b6"data-percent="80%"></div>
             </div>
         </div>
         <div class="skill">
             <p class="skill-name">Python</p>
             <div class="skill-bar">
-                <div class="skill-fill" style="width: 75%; background:#2ecc71">75%</div>
+                <div class="skill-fill" style="width: 90%; background:#2ecc71"data-percent="75%"></div>
             </div>
         </div>
         <div class="skill">
             <p class="skill-name">DBMS</p>
             <div class="skill-bar">
-                <div class="skill-fill" style="width: 80%; background: #ff004f">80%</div>
+                <div class="skill-fill" style="width: 90%; background: #ff004f"data-percent="80%"></div>
             </div>
         </div>
     </div>
@@ -647,31 +745,31 @@
         <div class="skill">
             <p class="skill-name">Communication</p>
             <div class="skill-bar">
-                <div class="skill-fill" style="width: 85%; background: #3498db">85%</div>
+                <div class="skill-fill" style="width: 90%; background: #3498db"data-percent="85%"></div>
             </div>
         </div>
         <div class="skill">
             <p class="skill-name">Problem Solving</p>
             <div class="skill-bar">
-                <div class="skill-fill" style="width: 90%; background: #ff004f">90%</div>
+                <div class="skill-fill" style="width: 90%; background: #ff004f" data-percent="90%"></div>
             </div>
         </div>
         <div class="skill">
             <p class="skill-name">Teamwork</p>
             <div class="skill-bar">
-                <div class="skill-fill" style="width: 80%; background:#9b59b6">80%</div>
+                <div class="skill-fill" style="width: 90%; background:#9b59b6"data-percent="80%"></div>
             </div>
         </div>
         <div class="skill">
             <p class="skill-name">Decision Making</p>
             <div class="skill-bar">
-                <div class="skill-fill" style="width: 70%; background: #2ecc71">70%</div>
+                <div class="skill-fill" style="width: 90%; background: #2ecc71"data-percent="70%"></div>
             </div>
         </div>
         <div class="skill">
             <p class="skill-name">Leadership Skills</p>
             <div class="skill-bar">
-                <div class="skill-fill" style="width: 75%; background: #f1c40f">75%</div>
+                <div class="skill-fill" style="width: 90%; background: #f1c40f"data-percent="75%"></div>
             </div>
         </div>
     </div>
@@ -681,19 +779,19 @@
         <div class="skill">
             <p class="skill-name">English</p>
             <div class="skill-bar">
-                <div class="skill-fill" style="width: 95%; background:#f1c40f">95%</div>
+                <div class="skill-fill" style="width: 90%; background:#f1c40f"data-percent="95%"></div>
             </div>
         </div>
         <div class="skill">
             <p class="skill-name">Telugu</p>
             <div class="skill-bar">
-                <div class="skill-fill" style="width: 100%; background: #2ecc71">100%</div>
+                <div class="skill-fill" style="width: 90%; background: #2ecc71"data-percent="100%"></div>
             </div>
         </div>
         <div class="skill">
             <p class="skill-name">Hindi</p>
             <div class="skill-bar">
-                <div class="skill-fill" style="width: 80%; background: #ff004f">80%</div>
+                <div class="skill-fill" style="width: 90%; background: #ff004f"data-percent="80%"></div>
             </div>
         </div>
     </div>
@@ -732,7 +830,7 @@
         <h1 class="sub-title">My Work</h1>    
         <div class="work-list">
             <div class="work">
-                <img src="diary.png">
+                <img src="personal Dairy.jpg" >
                 <div class="layer">
                     <h3>Personal Diary</h3>
                     <p>Design a diary application with a clean, intuitive interface that allows users to easily create, edit, and organize their daily entries with customizable themes and layouts.</p>
@@ -741,19 +839,37 @@
                 </div>
             </div>
             <div class="work">
-                <img src="cart.png">
+                <img src="Grocery Cart (1).jpg">
                 <div class="layer">
                     <h3> Sagicous Cart</h3>
-                    <p>Developed a smart vegetable cart Web Page, enabling easy access to fresh produce with user-friendly navigation. Streamlined for quick browsing, ordering, and a seamless shopping experience.</p>
+                    <p> 🌿Developed a smart vegetable cart webpage for easy access to fresh produce with intuitive navigation and streamlined ordering.</p>
                         <a href="https://github.com/sumanthindraganti/Sagious-Cart"><i class="fa-solid fa-arrow-up-right-from-square"></i></i></a>
                     </p>
                 </div>
             </div>
             <div class="work">
-                <img src="portfolio.png">
+                <img src="Personal Portfolio (1).jpg">
                 <div class="layer">
                     <h3> Personal Portfolio</h3>
-                    <p> well-crafted portfolio highlights your technical skills, projects, and accomplishments, serving as a visual representation of your expertise and creativity in the field.</p>
+                    <p>Well-crafted portfolio highlights your technical skills, projects, and accomplishments, serving as a visual representation of your expertise and creativity in the field.</p>
+                        <a href="https://github.com/sumanthindraganti/Personal-Portfolio"><i class="fa-solid fa-arrow-up-right-from-square"></i></i></a>
+                    </p>
+                </div>
+            </div>
+            <div class="work">
+                <img src="Learning League __Learn the C Language with Games_.jpg">
+                <div class="layer">
+                    <h3> Learning League</h3>
+                    <p> 🎓 Interactive E-Learning platform to master C programming through videos, quizzes, and gamified levels. Unlock concepts, play mini-games, and earn a certificate!</p>
+                        <a href="https://github.com/sumanthindraganti/Personal-Portfolio"><i class="fa-solid fa-arrow-up-right-from-square"></i></i></a>
+                    </p>
+                </div>
+            </div>
+            <div class="work">
+                <img src="Online Book Store .jpg">
+                <div class="layer">
+                    <h3> Online Book Store</h3>
+                    <p>📚 Online Book Store – Web Application An online book store web application that allows users to browse books, view detailed catalogs, and manage user accounts through login and registration functionality.</p>
                         <a href="https://github.com/sumanthindraganti/Personal-Portfolio"><i class="fa-solid fa-arrow-up-right-from-square"></i></i></a>
                     </p>
                 </div>
@@ -772,13 +888,10 @@
             <p><i class="fa-solid fa-square-phone"></i>9347059530</p>
             <div class="social-icons">
                 <a href="mailto:sumanthstar369@gmail.com?subject=Hello&body=This%20is%20a%20pre-filled%20message.">
-                    <i class="fa-regular fa-paper-plane"></i>
-                </a>
-                
+                    <i class="fa-regular fa-paper-plane"></i></a>
+                   <a href="https://github.com/sumanthindraganti"><i class="fa-brands fa-square-github"></i></a>
                 <a href="https://wa.me/9347059530"><i class="fa-brands fa-whatsapp"></i></a>
                 <a href="https://www.instagram.com/sumanth_indraganti/"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://x.com/Sumanth84689606"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
                 <a href="https://www.linkedin.com/in/indraganti-surya-sumanth-9a7653276?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Bf6%2FdHNuvRFGdTs18pbOQuw%3D%3D"><i class="fa-brands fa-linkedin"></i></a>
             </div>
             <a href="INDRAGANTI SURYA SUMANTH.pdf" download class="btn btn2">Download CV</a>
